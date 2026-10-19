@@ -1,0 +1,848 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examen aplicado · Patrones de diseño · Los Cortez</title>
+<style>
+:root{color-scheme:light dark;--bg:#f3f5f8;--card:#fff;--ink:#18283d;--muted:#526279;--line:#cad3df;--accent:#175ca6;--code:#eef2f7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:960px;margin:auto;padding:32px 20px 70px}h1{font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.15;margin:12px 0}h2{font-size:1.2rem;margin:0}p{margin:12px 0}.intro,.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin:20px 0}.kicker,.tema{color:var(--muted);font-size:.9rem}.kicker{font-weight:700;letter-spacing:.08em}.nav{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0}.nav a{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:7px;color:var(--accent);text-decoration:none;background:var(--card)}.q{scroll-margin-top:16px}.q header{display:flex;gap:14px;align-items:center}.n{background:var(--accent);color:white;border-radius:50%;min-width:38px;height:38px;display:grid;place-items:center;font-weight:bold}pre{background:var(--code);padding:18px;border-radius:8px;overflow:auto;line-height:1.6;font-size:.88rem}code{font-family:Consolas,monospace}.inciso{padding:12px 0;border-bottom:1px solid var(--line)}label{display:block;margin-bottom:7px;font-weight:600}select,input{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--muted);border-radius:6px;padding:9px;max-width:100%}select{width:100%}.num{width:150px}.feedback{display:block;font-size:.9rem;margin-top:5px}.acc{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}button{font:inherit;cursor:pointer;border:1px solid var(--accent);border-radius:7px;padding:8px 14px;background:var(--card);color:var(--accent)}button.primary{background:var(--accent);color:#fff}.exp{padding:14px;background:var(--code);border-radius:8px;margin-top:16px}.ok{outline:2px solid #21804b}.bad{outline:2px solid #c0392b}:focus-visible{outline:3px solid #d28a00;outline-offset:3px}.score{font-weight:bold}.note{color:var(--muted);font-size:.92rem}#global{font-weight:bold}footer{color:var(--muted)}
+@media(prefers-color-scheme:dark){:root{--bg:#101925;--card:#182536;--ink:#e7edf5;--muted:#b1c0d4;--line:#40546d;--accent:#75b9ff;--code:#101c2c}.n,button.primary{color:#101925}}
+@media(max-width:520px){main{padding:16px 12px}.intro,.q{padding:17px}pre{padding:12px;font-size:.8rem}}
+@media print{body{background:white;color:black}main{max-width:none;padding:0}.nav,.acc,#global,.note-interactive{display:none}.q{break-inside:avoid;border-color:#888}.exp[hidden]{display:none}select{appearance:none}pre{white-space:pre-wrap}.intro,.q{box-shadow:none}}
+</style></head><body><main>
+<div class="intro"><div class="kicker">DESARROLLO LOS CORTEZ · TP PYTHON</div>
+<h1>Patrones en acción</h1><p>Examen aplicado: 40 preguntas Cloze sobre los ocho patrones del TP.</p>
+<p><strong>1–20:</strong> aplicación y lectura de código. <strong>21–40:</strong> diagnóstico y diseño.</p>
+<p>Tiempo sugerido: 90 minutos. Dos incisos por pregunta: 80 puntos. Nota sobre 10 = aciertos ÷ 8. Sin penalización por error.</p>
+<p>Los fragmentos son independientes. Suponé importadas las clases desde sus subpaquetes de patrones; las variables preexistentes se describen en cada enunciado. Los huecos (1) y (2) se completan mentalmente antes de ejecutar.</p>
+<p>Importes en dólares, sin símbolo ni separador de miles. Se acepta punto o coma decimal. Cuando se pregunta por un print o valor concreto, ignorá los demás mensajes de diagnóstico.</p>
+<p class="note note-interactive">Opciones mezcladas al abrir. Corregir evalúa tus respuestas; Ver respuestas muestra la clave sin cambiarlas ni sumar puntos. Las respuestas no se guardan al cerrar o recargar.</p>
+<noscript>Activá JavaScript para usar el corrector. La guía docente contiene las respuestas.</noscript></div>
+<nav class="nav" aria-label="Ir a una pregunta">
+<a href="#q1" aria-label="Pregunta 1">1</a>
+<a href="#q2" aria-label="Pregunta 2">2</a>
+<a href="#q3" aria-label="Pregunta 3">3</a>
+<a href="#q4" aria-label="Pregunta 4">4</a>
+<a href="#q5" aria-label="Pregunta 5">5</a>
+<a href="#q6" aria-label="Pregunta 6">6</a>
+<a href="#q7" aria-label="Pregunta 7">7</a>
+<a href="#q8" aria-label="Pregunta 8">8</a>
+<a href="#q9" aria-label="Pregunta 9">9</a>
+<a href="#q10" aria-label="Pregunta 10">10</a>
+<a href="#q11" aria-label="Pregunta 11">11</a>
+<a href="#q12" aria-label="Pregunta 12">12</a>
+<a href="#q13" aria-label="Pregunta 13">13</a>
+<a href="#q14" aria-label="Pregunta 14">14</a>
+<a href="#q15" aria-label="Pregunta 15">15</a>
+<a href="#q16" aria-label="Pregunta 16">16</a>
+<a href="#q17" aria-label="Pregunta 17">17</a>
+<a href="#q18" aria-label="Pregunta 18">18</a>
+<a href="#q19" aria-label="Pregunta 19">19</a>
+<a href="#q20" aria-label="Pregunta 20">20</a>
+<a href="#q21" aria-label="Pregunta 21">21</a>
+<a href="#q22" aria-label="Pregunta 22">22</a>
+<a href="#q23" aria-label="Pregunta 23">23</a>
+<a href="#q24" aria-label="Pregunta 24">24</a>
+<a href="#q25" aria-label="Pregunta 25">25</a>
+<a href="#q26" aria-label="Pregunta 26">26</a>
+<a href="#q27" aria-label="Pregunta 27">27</a>
+<a href="#q28" aria-label="Pregunta 28">28</a>
+<a href="#q29" aria-label="Pregunta 29">29</a>
+<a href="#q30" aria-label="Pregunta 30">30</a>
+<a href="#q31" aria-label="Pregunta 31">31</a>
+<a href="#q32" aria-label="Pregunta 32">32</a>
+<a href="#q33" aria-label="Pregunta 33">33</a>
+<a href="#q34" aria-label="Pregunta 34">34</a>
+<a href="#q35" aria-label="Pregunta 35">35</a>
+<a href="#q36" aria-label="Pregunta 36">36</a>
+<a href="#q37" aria-label="Pregunta 37">37</a>
+<a href="#q38" aria-label="Pregunta 38">38</a>
+<a href="#q39" aria-label="Pregunta 39">39</a>
+<a href="#q40" aria-label="Pregunta 40">40</a>
+</nav><div class="acc"><button class="primary" id="corregir-todo">Corregir todo</button><p id="global" role="status" aria-live="polite"></p></div>
+<section class="q" id="q1"><header><span class="n">1</span><div><h2>Una conexión compartida</h2><span class="tema">Singleton · Nivel 1</span></div></header><p>Se ejecuta en un proceso nuevo. Considerá solo el resultado del print final.</p><pre><code>db1 = DatabaseConnection.get_instance()
+db2 = DatabaseConnection()
+print(db1 is db2)</code></pre>
+<div class="inciso"><label for="q1-a">a) Resultado del print:</label>
+<select id="q1-a" data-answer="True" aria-describedby="q1-a-fb"><option value="">Elegir…</option>
+<option value="True">True</option>
+<option value="False">False</option>
+<option value="None">None</option>
+<option value="TypeError">TypeError</option>
+</select>
+<span class="feedback" id="q1-a-fb"></span></div>
+<div class="inciso"><label for="q1-b">b) Cantidad de mensajes «Conexión a BD creada»:</label>
+<input class="num" id="q1-b" data-answer="1" aria-describedby="q1-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q1-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 1">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 1" aria-expanded="false" aria-controls="exp1">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp1" hidden><strong>Respuestas:</strong> a) True · b) 1<p><strong>Explicación.</strong> __new__ reutiliza la instancia y la bandera _initialized evita repetir la inicialización.</p></div></section>
+<section class="q" id="q2"><header><span class="n">2</span><div><h2>Dónde se controla la identidad</h2><span class="tema">Singleton · Nivel 1</span></div></header><p>Completá las responsabilidades de los métodos de DatabaseConnection.</p><pre><code>class DatabaseConnection:
+    def (1)(cls):
+        # crea o devuelve la única instancia
+        ...
+    def __init__(self):
+        # comprueba la bandera (2)
+        ...</code></pre>
+<div class="inciso"><label for="q2-a">a) Hueco (1):</label>
+<select id="q2-a" data-answer="__new__" aria-describedby="q2-a-fb"><option value="">Elegir…</option>
+<option value="__new__">__new__</option>
+<option value="__repr__">__repr__</option>
+<option value="query">query</option>
+<option value="__del__">__del__</option>
+</select>
+<span class="feedback" id="q2-a-fb"></span></div>
+<div class="inciso"><label for="q2-b">b) Hueco (2):</label>
+<select id="q2-b" data-answer="_initialized" aria-describedby="q2-b-fb"><option value="">Elegir…</option>
+<option value="_initialized">_initialized</option>
+<option value="_clientes">_clientes</option>
+<option value="_siguiente">_siguiente</option>
+<option value="_productos">_productos</option>
+</select>
+<span class="feedback" id="q2-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 2">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 2" aria-expanded="false" aria-controls="exp2">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp2" hidden><strong>Respuestas:</strong> a) __new__ · b) _initialized<p><strong>Explicación.</strong> Python puede invocar __init__ cada vez que se llama al constructor, aunque __new__ devuelva el mismo objeto.</p></div></section>
+<section class="q" id="q3"><header><span class="n">3</span><div><h2>Qué hace realmente query</h2><span class="tema">Singleton · Nivel 1</span></div></header><p>El equipo quiere ejecutar una consulta en la demostración del TP.</p><pre><code>db = DatabaseConnection.get_instance()
+r = db.query(&quot;SELECT * FROM productos&quot;)</code></pre>
+<div class="inciso"><label for="q3-a">a) La implementación de query:</label>
+<select id="q3-a" data-answer="Imprime el SQL como simulación" aria-describedby="q3-a-fb"><option value="">Elegir…</option>
+<option value="Imprime el SQL como simulación">Imprime el SQL como simulación</option>
+<option value="Abre una conexión MySQL real">Abre una conexión MySQL real</option>
+<option value="Retorna filas de SQLite">Retorna filas de SQLite</option>
+<option value="Crea la tabla productos">Crea la tabla productos</option>
+</select>
+<span class="feedback" id="q3-a-fb"></span></div>
+<div class="inciso"><label for="q3-b">b) Valor de r:</label>
+<select id="q3-b" data-answer="None" aria-describedby="q3-b-fb"><option value="">Elegir…</option>
+<option value="None">None</option>
+<option value="[]">[]</option>
+<option value="True">True</option>
+<option value="Un cursor de base de datos">Un cursor de base de datos</option>
+</select>
+<span class="feedback" id="q3-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 3">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 3" aria-expanded="false" aria-controls="exp3">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp3" hidden><strong>Respuestas:</strong> a) Imprime el SQL como simulación · b) None<p><strong>Explicación.</strong> El TP no se conecta a una base real: query usa print y no contiene un return de resultados.</p></div></section>
+<section class="q" id="q4"><header><span class="n">4</span><div><h2>Crear sin elegir por cadenas</h2><span class="tema">Factory Method · Nivel 1</span></div></header><p>Completá el uso de la API actual para crear un libro de Ana.</p><pre><code>creador = (1)(&quot;Ana&quot;)
+p = creador.crear_producto(&quot;Patrones&quot;, 20.0)
+print(p.(2))</code></pre>
+<div class="inciso"><label for="q4-a">a) Hueco (1):</label>
+<select id="q4-a" data-answer="CreadorLibro" aria-describedby="q4-a-fb"><option value="">Elegir…</option>
+<option value="CreadorLibro">CreadorLibro</option>
+<option value="ProductoFactory">ProductoFactory</option>
+<option value="CreadorProducto">CreadorProducto</option>
+<option value="Libro">Libro</option>
+</select>
+<span class="feedback" id="q4-a-fb"></span></div>
+<div class="inciso"><label for="q4-b">b) Hueco (2), para leer el precio:</label>
+<select id="q4-b" data-answer="precio" aria-describedby="q4-b-fb"><option value="">Elegir…</option>
+<option value="precio">precio</option>
+<option value="get_precio()">get_precio()</option>
+<option value="precio()">precio()</option>
+<option value="_autor">_autor</option>
+</select>
+<span class="feedback" id="q4-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 4">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 4" aria-expanded="false" aria-controls="exp4">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp4" hidden><strong>Respuestas:</strong> a) CreadorLibro · b) precio<p><strong>Explicación.</strong> CreadorLibro decide crear un Libro. El precio se expone mediante una propiedad de solo lectura.</p></div></section>
+<section class="q" id="q5"><header><span class="n">5</span><div><h2>Registrar un electrónico</h2><span class="tema">Factory Method · Nivel 1</span></div></header><p>Se crea y muestra un producto en una sola operación.</p><pre><code>p = CreadorElectronico(24).registrar_producto(&quot;Tablet&quot;, 300.0)</code></pre>
+<div class="inciso"><label for="q5-a">a) Clase concreta de p:</label>
+<select id="q5-a" data-answer="Electronico" aria-describedby="q5-a-fb"><option value="">Elegir…</option>
+<option value="Electronico">Electronico</option>
+<option value="CreadorElectronico">CreadorElectronico</option>
+<option value="ProductoFactory">ProductoFactory</option>
+<option value="Pedido">Pedido</option>
+</select>
+<span class="feedback" id="q5-a-fb"></span></div>
+<div class="inciso"><label for="q5-b">b) Acción de registrar_producto además de crear:</label>
+<select id="q5-b" data-answer="Invoca mostrar_info() y devuelve el producto" aria-describedby="q5-b-fb"><option value="">Elegir…</option>
+<option value="Invoca mostrar_info() y devuelve el producto">Invoca mostrar_info() y devuelve el producto</option>
+<option value="Lo agrega al carrito automáticamente">Lo agrega al carrito automáticamente</option>
+<option value="Lo guarda en MySQL">Lo guarda en MySQL</option>
+<option value="Retorna únicamente el precio">Retorna únicamente el precio</option>
+</select>
+<span class="feedback" id="q5-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 5">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 5" aria-expanded="false" aria-controls="exp5">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp5" hidden><strong>Respuestas:</strong> a) Electronico · b) Invoca mostrar_info() y devuelve el producto<p><strong>Explicación.</strong> La operación del creador usa el factory method y luego trabaja con la interfaz Producto; no conoce la clase concreta.</p></div></section>
+<section class="q" id="q6"><header><span class="n">6</span><div><h2>Un nuevo producto del catálogo</h2><span class="tema">Factory Method · Nivel 1</span></div></header><p>Se incorpora Ropa, con su propio mostrar_info(), sin cambiar los creadores existentes.</p><pre><code>class Ropa((1)):
+    def mostrar_info(self): ...
+
+class CreadorRopa((2)):
+    def crear_producto(self, nombre, precio):
+        return Ropa(nombre, precio)</code></pre>
+<div class="inciso"><label for="q6-a">a) Base (1):</label>
+<select id="q6-a" data-answer="Producto" aria-describedby="q6-a-fb"><option value="">Elegir…</option>
+<option value="Producto">Producto</option>
+<option value="CreadorProducto">CreadorProducto</option>
+<option value="PedidoBuilder">PedidoBuilder</option>
+<option value="Observer">Observer</option>
+</select>
+<span class="feedback" id="q6-a-fb"></span></div>
+<div class="inciso"><label for="q6-b">b) Base (2):</label>
+<select id="q6-b" data-answer="CreadorProducto" aria-describedby="q6-b-fb"><option value="">Elegir…</option>
+<option value="CreadorProducto">CreadorProducto</option>
+<option value="Libro">Libro</option>
+<option value="CarritoCompra">CarritoCompra</option>
+<option value="ComponenteProducto">ComponenteProducto</option>
+</select>
+<span class="feedback" id="q6-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 6">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 6" aria-expanded="false" aria-controls="exp6">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp6" hidden><strong>Respuestas:</strong> a) Producto · b) CreadorProducto<p><strong>Explicación.</strong> Se extienden el producto y el creador. La decisión de construcción queda en la nueva subclase, sin agregar un if central.</p></div></section>
+<section class="q" id="q7"><header><span class="n">7</span><div><h2>Pedido estándar simple</h2><span class="tema">Builder · Nivel 1</span></div></header><p>El builder es nuevo. El libro cuesta 100 y no se agregan extras.</p><pre><code>p = CreadorLibro().crear_producto(&quot;TP&quot;, 100.0)
+d = DirectorPedido(PedidoEstandarBuilder())
+pedido = d.construir_pedido_simple([p], &quot;Calle Falsa 123&quot;)
+total = pedido.calcular_total()</code></pre>
+<div class="inciso"><label for="q7-a">a) Costo de envío estándar:</label>
+<input class="num" id="q7-a" data-answer="5" aria-describedby="q7-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q7-a-fb"></span></div>
+<div class="inciso"><label for="q7-b">b) Valor de total:</label>
+<input class="num" id="q7-b" data-answer="105" aria-describedby="q7-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q7-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 7">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 7" aria-expanded="false" aria-controls="exp7">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp7" hidden><strong>Respuestas:</strong> a) 5 · b) 105<p><strong>Explicación.</strong> El pedido simple suma el subtotal de productos y el envío estándar de $5.</p></div></section>
+<section class="q" id="q8"><header><span class="n">8</span><div><h2>Regalo con seguro</h2><span class="tema">Builder · Nivel 1</span></div></header><p>El builder es nuevo. El director activa envoltura y seguro del pedido.</p><pre><code>p = CreadorLibro().crear_producto(&quot;TP&quot;, 100.0)
+d = DirectorPedido(PedidoEstandarBuilder())
+pedido = d.construir_pedido_regalo([p], &quot;Calle Falsa 123&quot;, &quot;¡Felicitaciones!&quot;)</code></pre>
+<div class="inciso"><label for="q8-a">a) Importe del seguro del pedido:</label>
+<input class="num" id="q8-a" data-answer="3" aria-describedby="q8-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q8-a-fb"></span></div>
+<div class="inciso"><label for="q8-b">b) Total del pedido:</label>
+<input class="num" id="q8-b" data-answer="113" aria-describedby="q8-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q8-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 8">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 8" aria-expanded="false" aria-controls="exp8">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp8" hidden><strong>Respuestas:</strong> a) 3 · b) 113<p><strong>Explicación.</strong> Builder aplica 3% al subtotal: 100 + 5 de envío + 5 de envoltura + 3 de seguro = 113. No usa el 2% de Decorator.</p></div></section>
+<section class="q" id="q9"><header><span class="n">9</span><div><h2>Cambiar la modalidad de construcción</h2><span class="tema">Builder · Nivel 1</span></div></header><p>El director ya existe; ahora se necesita envío express para un libro de $100.</p><pre><code>d = DirectorPedido(PedidoEstandarBuilder())
+d.(1)(PedidoExpressBuilder())
+pedido = d.construir_pedido_simple([libro_de_100], &quot;Calle Falsa 123&quot;)</code></pre>
+<div class="inciso"><label for="q9-a">a) Hueco (1):</label>
+<select id="q9-a" data-answer="set_builder" aria-describedby="q9-a-fb"><option value="">Elegir…</option>
+<option value="set_builder">set_builder</option>
+<option value="set_estrategia_pago">set_estrategia_pago</option>
+<option value="set_siguiente">set_siguiente</option>
+<option value="suscribir">suscribir</option>
+</select>
+<span class="feedback" id="q9-a-fb"></span></div>
+<div class="inciso"><label for="q9-b">b) Total express sin extras:</label>
+<input class="num" id="q9-b" data-answer="115" aria-describedby="q9-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q9-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 9">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 9" aria-expanded="false" aria-controls="exp9">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp9" hidden><strong>Respuestas:</strong> a) set_builder · b) 115<p><strong>Explicación.</strong> set_builder reemplaza el constructor que utiliza el director. El builder express cobra $15 de envío.</p></div></section>
+<section class="q" id="q10"><header><span class="n">10</span><div><h2>Envolver un producto</h2><span class="tema">Decorator · Nivel 1</span></div></header><p>Se ofrece envoltura para un producto de $10.</p><pre><code>base = ProductoConcreto(&quot;Libro&quot;, 10.0)
+regalo = EnvolturaRegalo(base)</code></pre>
+<div class="inciso"><label for="q10-a">a) regalo.precio:</label>
+<input class="num" id="q10-a" data-answer="15" aria-describedby="q10-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q10-a-fb"></span></div>
+<div class="inciso"><label for="q10-b">b) base.precio después de decorar:</label>
+<input class="num" id="q10-b" data-answer="10" aria-describedby="q10-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q10-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 10">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 10" aria-expanded="false" aria-controls="exp10">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp10" hidden><strong>Respuestas:</strong> a) 15 · b) 10<p><strong>Explicación.</strong> El decorador envuelve el componente y suma $5 al consultar su precio. No cambia el precio del objeto base.</p></div></section>
+<section class="q" id="q11"><header><span class="n">11</span><div><h2>Servicios acumulados</h2><span class="tema">Decorator · Nivel 1</span></div></header><p>Calculá los resultados usando las reglas del TP.</p><pre><code>p = ProductoConcreto(&quot;Laptop&quot;, 100.0)
+p = SeguroProducto(p)
+con_seguro = p.precio
+p = GarantiaExtendida(p)</code></pre>
+<div class="inciso"><label for="q11-a">a) con_seguro:</label>
+<input class="num" id="q11-a" data-answer="102" aria-describedby="q11-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q11-a-fb"></span></div>
+<div class="inciso"><label for="q11-b">b) Precio final con garantía:</label>
+<input class="num" id="q11-b" data-answer="131.99" aria-describedby="q11-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q11-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 11">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 11" aria-expanded="false" aria-controls="exp11">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp11" hidden><strong>Respuestas:</strong> a) 102 · b) 131.99<p><strong>Explicación.</strong> El seguro agrega 2% al precio actual y la garantía extendida suma $29.99.</p></div></section>
+<section class="q" id="q12"><header><span class="n">12</span><div><h2>El contrato del componente</h2><span class="tema">Decorator · Nivel 1</span></div></header><p>Un cliente trabaja con productos simples o decorados mediante el mismo contrato.</p><pre><code>def mostrar(p):
+    print(p.descripcion)
+    print(p.precio)</code></pre>
+<div class="inciso"><label for="q12-a">a) Interfaz común:</label>
+<select id="q12-a" data-answer="ComponenteProducto" aria-describedby="q12-a-fb"><option value="">Elegir…</option>
+<option value="ComponenteProducto">ComponenteProducto</option>
+<option value="CreadorProducto">CreadorProducto</option>
+<option value="EstrategiaPago">EstrategiaPago</option>
+<option value="SistemaEnvio">SistemaEnvio</option>
+</select>
+<span class="feedback" id="q12-a-fb"></span></div>
+<div class="inciso"><label for="q12-b">b) En las clases del TP, descripcion y precio son:</label>
+<select id="q12-b" data-answer="Propiedades" aria-describedby="q12-b-fb"><option value="">Elegir…</option>
+<option value="Propiedades">Propiedades</option>
+<option value="Métodos que requieren ()">Métodos que requieren ()</option>
+<option value="Variables globales">Variables globales</option>
+<option value="Métodos estáticos">Métodos estáticos</option>
+</select>
+<span class="feedback" id="q12-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 12">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 12" aria-expanded="false" aria-controls="exp12">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp12" hidden><strong>Respuestas:</strong> a) ComponenteProducto · b) Propiedades<p><strong>Explicación.</strong> ComponenteProducto define ambas propiedades abstractas. Los componentes concretos y decoradores las implementan.</p></div></section>
+<section class="q" id="q13"><header><span class="n">13</span><div><h2>Cotizar DHL desde kilogramos</h2><span class="tema">Adapter · Nivel 1</span></div></header><p>DHL legado cobra 3 + gramos × 0.008. La interfaz del adaptador recibe kilogramos.</p><pre><code>a = AdaptadorDHL()
+costo = a.calcular_costo(2.5, &quot;Buenos Aires&quot;)
+dias = a.estimar_dias(&quot;Buenos Aires&quot;)</code></pre>
+<div class="inciso"><label for="q13-a">a) costo:</label>
+<input class="num" id="q13-a" data-answer="23" aria-describedby="q13-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q13-a-fb"></span></div>
+<div class="inciso"><label for="q13-b">b) dias:</label>
+<input class="num" id="q13-b" data-answer="2" aria-describedby="q13-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q13-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 13">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 13" aria-expanded="false" aria-controls="exp13">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp13" hidden><strong>Respuestas:</strong> a) 23 · b) 2<p><strong>Explicación.</strong> 2.5 kg equivalen a 2500 g. La tarifa es 3 + 20. El adaptador extrae 2 de «2-3 días hábiles».</p></div></section>
+<section class="q" id="q14"><header><span class="n">14</span><div><h2>Un cliente, dos transportistas</h2><span class="tema">Adapter · Nivel 1</span></div></header><p>Se quiere invocar el mismo conjunto de métodos para DHL y FedEx.</p><pre><code>def cotizar(sistema, peso, destino):
+    return sistema.calcular_costo(peso, destino)</code></pre>
+<div class="inciso"><label for="q14-a">a) Contrato que implementan ambos adaptadores:</label>
+<select id="q14-a" data-answer="SistemaEnvio" aria-describedby="q14-a-fb"><option value="">Elegir…</option>
+<option value="SistemaEnvio">SistemaEnvio</option>
+<option value="SistemaLegadoDHL">SistemaLegadoDHL</option>
+<option value="PedidoBuilder">PedidoBuilder</option>
+<option value="Producto">Producto</option>
+</select>
+<span class="feedback" id="q14-a-fb"></span></div>
+<div class="inciso"><label for="q14-b">b) Significado de destino según el TP:</label>
+<select id="q14-b" data-answer="Ciudad en DHL y código postal en FedEx" aria-describedby="q14-b-fb"><option value="">Elegir…</option>
+<option value="Ciudad en DHL y código postal en FedEx">Ciudad en DHL y código postal en FedEx</option>
+<option value="Ciudad en ambos">Ciudad en ambos</option>
+<option value="Código postal en ambos">Código postal en ambos</option>
+<option value="Siempre un objeto Pedido">Siempre un objeto Pedido</option>
+</select>
+<span class="feedback" id="q14-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 14">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 14" aria-expanded="false" aria-controls="exp14">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp14" hidden><strong>Respuestas:</strong> a) SistemaEnvio · b) Ciudad en DHL y código postal en FedEx<p><strong>Explicación.</strong> Adapter unifica las operaciones, pero este TP conserva la diferencia semántica del destino; no implementa geocodificación.</p></div></section>
+<section class="q" id="q15"><header><span class="n">15</span><div><h2>Evitar suscripciones repetidas</h2><span class="tema">Observer · Nivel 1</span></div></header><p>Se intenta suscribir dos veces el mismo objeto.</p><pre><code>t = Tienda(&quot;Cortez&quot;)
+c = Cliente(&quot;Ana&quot;)
+t.suscribir(c)
+t.suscribir(c)
+t.nueva_oferta(&quot;Libros al 20%&quot;)</code></pre>
+<div class="inciso"><label for="q15-a">a) Clientes en t._clientes:</label>
+<input class="num" id="q15-a" data-answer="1" aria-describedby="q15-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q15-a-fb"></span></div>
+<div class="inciso"><label for="q15-b">b) Llamadas a c.actualizar por esa oferta:</label>
+<input class="num" id="q15-b" data-answer="1" aria-describedby="q15-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q15-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 15">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 15" aria-expanded="false" aria-controls="exp15">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp15" hidden><strong>Respuestas:</strong> a) 1 · b) 1<p><strong>Explicación.</strong> Tienda detecta que el mismo cliente ya está en la lista y no lo vuelve a agregar.</p></div></section>
+<section class="q" id="q16"><header><span class="n">16</span><div><h2>Agregar otro tipo de observador</h2><span class="tema">Observer · Nivel 1</span></div></header><p>Completá el contrato para recibir los mensajes publicados por Tienda.</p><pre><code>class PanelOfertas((1)):
+    def (2)(self, mensaje):
+        print(&quot;PANEL:&quot;, mensaje)</code></pre>
+<div class="inciso"><label for="q16-a">a) Base (1):</label>
+<select id="q16-a" data-answer="Observer" aria-describedby="q16-a-fb"><option value="">Elegir…</option>
+<option value="Observer">Observer</option>
+<option value="Tienda">Tienda</option>
+<option value="EstrategiaPago">EstrategiaPago</option>
+<option value="ValidadorPedido">ValidadorPedido</option>
+</select>
+<span class="feedback" id="q16-a-fb"></span></div>
+<div class="inciso"><label for="q16-b">b) Método (2):</label>
+<select id="q16-b" data-answer="actualizar" aria-describedby="q16-b-fb"><option value="">Elegir…</option>
+<option value="actualizar">actualizar</option>
+<option value="pagar">pagar</option>
+<option value="crear_producto">crear_producto</option>
+<option value="build">build</option>
+</select>
+<span class="feedback" id="q16-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 16">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 16" aria-expanded="false" aria-controls="exp16">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp16" hidden><strong>Respuestas:</strong> a) Observer · b) actualizar<p><strong>Explicación.</strong> Tienda invoca actualizar(mensaje) y exige que el suscriptor sea una instancia de Observer.</p></div></section>
+<section class="q" id="q17"><header><span class="n">17</span><div><h2>Pagar en efectivo</h2><span class="tema">Strategy · Nivel 1</span></div></header><p>El carrito contiene un único libro de $100. La compra finaliza sin errores.</p><pre><code>c = CarritoCompra()
+c.agregar_producto(CreadorLibro().crear_producto(&quot;TP&quot;, 100.0))
+c.set_estrategia_pago(PagoEfectivo())
+c.checkout()</code></pre>
+<div class="inciso"><label for="q17-a">a) Importe final anunciado por PagoEfectivo:</label>
+<input class="num" id="q17-a" data-answer="95" aria-describedby="q17-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q17-a-fb"></span></div>
+<div class="inciso"><label for="q17-b">b) Estado después de checkout:</label>
+<select id="q17-b" data-answer="Productos vacíos y estrategia None" aria-describedby="q17-b-fb"><option value="">Elegir…</option>
+<option value="Productos vacíos y estrategia None">Productos vacíos y estrategia None</option>
+<option value="Productos vacíos y PagoEfectivo conservado">Productos vacíos y PagoEfectivo conservado</option>
+<option value="Productos y estrategia conservados">Productos y estrategia conservados</option>
+<option value="El carrito se convierte en Pedido">El carrito se convierte en Pedido</option>
+</select>
+<span class="feedback" id="q17-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 17">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 17" aria-expanded="false" aria-controls="exp17">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp17" hidden><strong>Respuestas:</strong> a) 95 · b) Productos vacíos y estrategia None<p><strong>Explicación.</strong> PagoEfectivo descuenta 5%. Tras pagar correctamente, checkout reinicia tanto los productos como la estrategia.</p></div></section>
+<section class="q" id="q18"><header><span class="n">18</span><div><h2>Cambiar el algoritmo de pago</h2><span class="tema">Strategy · Nivel 1</span></div></header><p>El carrito tiene productos válidos y se selecciona un método dos veces antes del checkout.</p><pre><code>c.set_estrategia_pago(PagoEfectivo())
+c.set_estrategia_pago(PagoPayPal(&quot;ana@example.com&quot;))
+c.checkout()</code></pre>
+<div class="inciso"><label for="q18-a">a) Estrategia ejecutada:</label>
+<select id="q18-a" data-answer="PagoPayPal" aria-describedby="q18-a-fb"><option value="">Elegir…</option>
+<option value="PagoPayPal">PagoPayPal</option>
+<option value="PagoEfectivo">PagoEfectivo</option>
+<option value="Las dos">Las dos</option>
+<option value="Ninguna: no se puede cambiar">Ninguna: no se puede cambiar</option>
+</select>
+<span class="feedback" id="q18-a-fb"></span></div>
+<div class="inciso"><label for="q18-b">b) Rol de CarritoCompra:</label>
+<select id="q18-b" data-answer="Contexto" aria-describedby="q18-b-fb"><option value="">Elegir…</option>
+<option value="Contexto">Contexto</option>
+<option value="Estrategia concreta">Estrategia concreta</option>
+<option value="Adaptado legado">Adaptado legado</option>
+<option value="Producto del Builder">Producto del Builder</option>
+</select>
+<span class="feedback" id="q18-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 18">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 18" aria-expanded="false" aria-controls="exp18">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp18" hidden><strong>Respuestas:</strong> a) PagoPayPal · b) Contexto<p><strong>Explicación.</strong> El contexto mantiene una referencia a la estrategia actual; la segunda asignación reemplaza la primera.</p></div></section>
+<section class="q" id="q19"><header><span class="n">19</span><div><h2>Enlazar validadores</h2><span class="tema">Chain of Responsibility · Nivel 1</span></div></header><p>Se construye la cadena por medio de llamadas fluidas.</p><pre><code>a = ValidadorStock()
+b = ValidadorPago()
+c = ValidadorDireccion()
+r = a.set_siguiente(b)
+r.set_siguiente(c)</code></pre>
+<div class="inciso"><label for="q19-a">a) r es el mismo objeto que:</label>
+<select id="q19-a" data-answer="b" aria-describedby="q19-a-fb"><option value="">Elegir…</option>
+<option value="b">b</option>
+<option value="a">a</option>
+<option value="c">c</option>
+<option value="None">None</option>
+</select>
+<span class="feedback" id="q19-a-fb"></span></div>
+<div class="inciso"><label for="q19-b">b) Orden resultante:</label>
+<select id="q19-b" data-answer="Stock → Pago → Dirección" aria-describedby="q19-b-fb"><option value="">Elegir…</option>
+<option value="Stock → Pago → Dirección">Stock → Pago → Dirección</option>
+<option value="Stock → Dirección → Pago">Stock → Dirección → Pago</option>
+<option value="Pago → Stock → Dirección">Pago → Stock → Dirección</option>
+<option value="Stock → Dirección; Pago queda fuera">Stock → Dirección; Pago queda fuera</option>
+</select>
+<span class="feedback" id="q19-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 19">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 19" aria-expanded="false" aria-controls="exp19">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp19" hidden><strong>Respuestas:</strong> a) b · b) Stock → Pago → Dirección<p><strong>Explicación.</strong> set_siguiente devuelve el manejador recibido; por eso la siguiente llamada enlaza desde b y no desde a.</p></div></section>
+<section class="q" id="q20"><header><span class="n">20</span><div><h2>Cortar un pedido vacío</h2><span class="tema">Chain of Responsibility · Nivel 1</span></div></header><p>Se inicia la validación desde stock.</p><pre><code>stock = ValidadorStock()
+stock.set_siguiente(ValidadorPago())
+r = stock.validar({&quot;productos&quot;: [], &quot;metodo_pago&quot;: &quot;tarjeta&quot;})</code></pre>
+<div class="inciso"><label for="q20-a">a) Valor de r:</label>
+<select id="q20-a" data-answer="False" aria-describedby="q20-a-fb"><option value="">Elegir…</option>
+<option value="False">False</option>
+<option value="True">True</option>
+<option value="None">None</option>
+<option value="TypeError">TypeError</option>
+</select>
+<span class="feedback" id="q20-a-fb"></span></div>
+<div class="inciso"><label for="q20-b">b) Veces que se ejecuta ValidadorPago.validar:</label>
+<input class="num" id="q20-b" data-answer="0" aria-describedby="q20-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q20-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 20">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 20" aria-expanded="false" aria-controls="exp20">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp20" hidden><strong>Respuestas:</strong> a) False · b) 0<p><strong>Explicación.</strong> Stock rechaza la lista vacía y devuelve False sin delegar. No se evalúan los manejadores posteriores.</p></div></section>
+<section class="q" id="q21"><header><span class="n">21</span><div><h2>Inicializar una sola vez</h2><span class="tema">Singleton · Nivel 2</span></div></header><p>Un compañero elimina la comprobación de _initialized de __init__, pero conserva __new__.</p><pre><code>db1 = DatabaseConnection()
+db2 = DatabaseConnection()
+# Variante propuesta: __init__ imprime siempre el mensaje de creación.</code></pre>
+<div class="inciso"><label for="q21-a">a) En esa variante, db1 is db2:</label>
+<select id="q21-a" data-answer="True" aria-describedby="q21-a-fb"><option value="">Elegir…</option>
+<option value="True">True</option>
+<option value="False">False</option>
+<option value="None">None</option>
+<option value="Depende del SQL">Depende del SQL</option>
+</select>
+<span class="feedback" id="q21-a-fb"></span></div>
+<div class="inciso"><label for="q21-b">b) Mensajes de creación en esa variante, con dos llamadas secuenciales:</label>
+<input class="num" id="q21-b" data-answer="2" aria-describedby="q21-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q21-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 21">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 21" aria-expanded="false" aria-controls="exp21">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp21" hidden><strong>Respuestas:</strong> a) True · b) 2<p><strong>Explicación.</strong> Controlar la identidad no evita invocar __init__. La bandera protege los efectos de inicialización, no la identidad.</p></div></section>
+<section class="q" id="q22"><header><span class="n">22</span><div><h2>Creación concurrente</h2><span class="tema">Singleton · Nivel 2</span></div></header><p>Dos hilos intentan obtener la conexión por primera vez. Analizá la implementación actual.</p><pre><code>if cls._instance is None:
+    with cls._lock:
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)</code></pre>
+<div class="inciso"><label for="q22-a">a) Razón de repetir el chequeo dentro del lock:</label>
+<select id="q22-a" data-answer="Otro hilo pudo crear la instancia mientras este esperaba" aria-describedby="q22-a-fb"><option value="">Elegir…</option>
+<option value="Otro hilo pudo crear la instancia mientras este esperaba">Otro hilo pudo crear la instancia mientras este esperaba</option>
+<option value="El lock borra la instancia">El lock borra la instancia</option>
+<option value="Evita usar __init__">Evita usar __init__</option>
+<option value="Abre dos conexiones en paralelo">Abre dos conexiones en paralelo</option>
+</select>
+<span class="feedback" id="q22-a-fb"></span></div>
+<div class="inciso"><label for="q22-b">b) Alcance real de esta instancia compartida:</label>
+<select id="q22-b" data-answer="El proceso de Python actual" aria-describedby="q22-b-fb"><option value="">Elegir…</option>
+<option value="El proceso de Python actual">El proceso de Python actual</option>
+<option value="Todos los procesos del sistema">Todos los procesos del sistema</option>
+<option value="Todos los equipos de la red">Todos los equipos de la red</option>
+<option value="La base de datos remota">La base de datos remota</option>
+</select>
+<span class="feedback" id="q22-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 22">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 22" aria-expanded="false" aria-controls="exp22">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp22" hidden><strong>Respuestas:</strong> a) Otro hilo pudo crear la instancia mientras este esperaba · b) El proceso de Python actual<p><strong>Explicación.</strong> El segundo chequeo evita crear otra instancia tras esperar el bloqueo. Las variables de clase no comparten objetos entre procesos.</p></div></section>
+<section class="q" id="q23"><header><span class="n">23</span><div><h2>Polimorfismo del creador</h2><span class="tema">Factory Method · Nivel 2</span></div></header><p>Se ejecuta la misma operación para dos creadores distintos.</p><pre><code>creadores = [CreadorLibro(&quot;Ana&quot;), CreadorElectronico(24)]
+productos = [c.registrar_producto(&quot;X&quot;, 10.0) for c in creadores]</code></pre>
+<div class="inciso"><label for="q23-a">a) Tipos de productos, en orden:</label>
+<select id="q23-a" data-answer="Libro, Electronico" aria-describedby="q23-a-fb"><option value="">Elegir…</option>
+<option value="Libro, Electronico">Libro, Electronico</option>
+<option value="Producto, Producto">Producto, Producto</option>
+<option value="CreadorLibro, CreadorElectronico">CreadorLibro, CreadorElectronico</option>
+<option value="Libro, Libro">Libro, Libro</option>
+</select>
+<span class="feedback" id="q23-a-fb"></span></div>
+<div class="inciso"><label for="q23-b">b) Quién decide la clase concreta:</label>
+<select id="q23-b" data-answer="La implementación de crear_producto de cada subclase" aria-describedby="q23-b-fb"><option value="">Elegir…</option>
+<option value="La implementación de crear_producto de cada subclase">La implementación de crear_producto de cada subclase</option>
+<option value="registrar_producto mediante un if por nombre">registrar_producto mediante un if por nombre</option>
+<option value="El precio recibido">El precio recibido</option>
+<option value="El módulo main mediante una conexión SQL">El módulo main mediante una conexión SQL</option>
+</select>
+<span class="feedback" id="q23-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 23">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 23" aria-expanded="false" aria-controls="exp23">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp23" hidden><strong>Respuestas:</strong> a) Libro, Electronico · b) La implementación de crear_producto de cada subclase<p><strong>Explicación.</strong> registrar_producto reutiliza un flujo común y despacha crear_producto polimórficamente.</p></div></section>
+<section class="q" id="q24"><header><span class="n">24</span><div><h2>Contrato de precios y propiedades</h2><span class="tema">Factory Method · Nivel 2</span></div></header><p>Evaluá las dos líneas de manera independiente.</p><pre><code># Caso A
+CreadorLibro().crear_producto(&quot;X&quot;, -1.0)
+# Caso B
+p = CreadorLibro().crear_producto(&quot;X&quot;, 10.0)
+p.precio = 20.0</code></pre>
+<div class="inciso"><label for="q24-a">a) Caso A:</label>
+<select id="q24-a" data-answer="ValueError" aria-describedby="q24-a-fb"><option value="">Elegir…</option>
+<option value="ValueError">ValueError</option>
+<option value="Crea el producto">Crea el producto</option>
+<option value="TypeError">TypeError</option>
+<option value="Retorna None">Retorna None</option>
+</select>
+<span class="feedback" id="q24-a-fb"></span></div>
+<div class="inciso"><label for="q24-b">b) Caso B:</label>
+<select id="q24-b" data-answer="AttributeError" aria-describedby="q24-b-fb"><option value="">Elegir…</option>
+<option value="AttributeError">AttributeError</option>
+<option value="Actualiza el precio">Actualiza el precio</option>
+<option value="Crea otro producto">Crea otro producto</option>
+<option value="Devuelve False">Devuelve False</option>
+</select>
+<span class="feedback" id="q24-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 24">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 24" aria-expanded="false" aria-controls="exp24">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp24" hidden><strong>Respuestas:</strong> a) ValueError · b) AttributeError<p><strong>Explicación.</strong> El constructor rechaza precios negativos. La propiedad precio no declara setter: asignarle un valor produce AttributeError.</p></div></section>
+<section class="q" id="q25"><header><span class="n">25</span><div><h2>Reutilizar sin mezclar pedidos</h2><span class="tema">Builder · Nivel 2</span></div></header><p>El mismo builder produce dos pedidos consecutivos.</p><pre><code>b = PedidoEstandarBuilder()
+b.agregar_producto(CreadorLibro().crear_producto(&quot;X&quot;, 10.0))
+p1 = b.build()
+p2 = b.build()</code></pre>
+<div class="inciso"><label for="q25-a">a) p1.calcular_total():</label>
+<input class="num" id="q25-a" data-answer="15" aria-describedby="q25-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q25-a-fb"></span></div>
+<div class="inciso"><label for="q25-b">b) p2.calcular_total():</label>
+<input class="num" id="q25-b" data-answer="5" aria-describedby="q25-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q25-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 25">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 25" aria-expanded="false" aria-controls="exp25">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp25" hidden><strong>Respuestas:</strong> a) 15 · b) 5<p><strong>Explicación.</strong> build devuelve el pedido anterior y crea otro vacío. El segundo build aplica igualmente el envío de $5; no conserva los productos del primero.</p></div></section>
+<section class="q" id="q26"><header><span class="n">26</span><div><h2>La etiqueta personalizada</h2><span class="tema">Builder · Nivel 2</span></div></header><p>Se configura una etiqueta antes de construir, sin agregar productos.</p><pre><code>b = PedidoExpressBuilder()
+b.set_tipo_envio(&quot;Retiro local&quot;)
+p = b.build()</code></pre>
+<div class="inciso"><label for="q26-a">a) Etiqueta final del pedido:</label>
+<select id="q26-a" data-answer="Express (1 día hábil)" aria-describedby="q26-a-fb"><option value="">Elegir…</option>
+<option value="Express (1 día hábil)">Express (1 día hábil)</option>
+<option value="Retiro local">Retiro local</option>
+<option value="Estándar (5 días hábiles)">Estándar (5 días hábiles)</option>
+<option value="None">None</option>
+</select>
+<span class="feedback" id="q26-a-fb"></span></div>
+<div class="inciso"><label for="q26-b">b) p.calcular_total():</label>
+<input class="num" id="q26-b" data-answer="15" aria-describedby="q26-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q26-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 26">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 26" aria-expanded="false" aria-controls="exp26">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp26" hidden><strong>Respuestas:</strong> a) Express (1 día hábil) · b) 15<p><strong>Explicación.</strong> Según el contrato del TP, build vuelve a aplicar TIPO_ENVIO y COSTO_ENVIO del builder. set_tipo_envio no cambia esa política.</p></div></section>
+<section class="q" id="q27"><header><span class="n">27</span><div><h2>El orden cambia el precio</h2><span class="tema">Decorator · Nivel 2</span></div></header><p>Ambas expresiones parten de un producto de $100.</p><pre><code>base = ProductoConcreto(&quot;X&quot;, 100.0)
+a = SeguroProducto(EnvolturaRegalo(base))
+b = EnvolturaRegalo(SeguroProducto(base))</code></pre>
+<div class="inciso"><label for="q27-a">a) a.precio:</label>
+<input class="num" id="q27-a" data-answer="107.1" aria-describedby="q27-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q27-a-fb"></span></div>
+<div class="inciso"><label for="q27-b">b) b.precio:</label>
+<input class="num" id="q27-b" data-answer="107" aria-describedby="q27-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q27-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 27">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 27" aria-expanded="false" aria-controls="exp27">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp27" hidden><strong>Respuestas:</strong> a) 107.1 · b) 107<p><strong>Explicación.</strong> En a, el seguro grava 105: 105 × 1.02 = 107.10. En b, primero se asegura 100 y luego se suman 5: 107.00.</p></div></section>
+<section class="q" id="q28"><header><span class="n">28</span><div><h2>Un envoltorio sin recargo</h2><span class="tema">Decorator · Nivel 2</span></div></header><p>Se instancia directamente la clase base del decorador del TP.</p><pre><code>base = ProductoConcreto(&quot;X&quot;, 10.0)
+d = DecoradorProducto(base)</code></pre>
+<div class="inciso"><label for="q28-a">a) Resultado de la construcción:</label>
+<select id="q28-a" data-answer="Se crea un decorador que delega" aria-describedby="q28-a-fb"><option value="">Elegir…</option>
+<option value="Se crea un decorador que delega">Se crea un decorador que delega</option>
+<option value="TypeError por clase abstracta">TypeError por clase abstracta</option>
+<option value="Se crea un Libro">Se crea un Libro</option>
+<option value="ValueError por faltar seguro">ValueError por faltar seguro</option>
+</select>
+<span class="feedback" id="q28-a-fb"></span></div>
+<div class="inciso"><label for="q28-b">b) d.precio:</label>
+<input class="num" id="q28-b" data-answer="10" aria-describedby="q28-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q28-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 28">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 28" aria-expanded="false" aria-controls="exp28">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp28" hidden><strong>Respuestas:</strong> a) Se crea un decorador que delega · b) 10<p><strong>Explicación.</strong> DecoradorProducto implementa las dos propiedades abstractas. Por eso es instanciable y delega sin sumar recargos.</p></div></section>
+<section class="q" id="q29"><header><span class="n">29</span><div><h2>FedEx y las unidades</h2><span class="tema">Adapter · Nivel 2</span></div></header><p>La conversión es round(kg × 2.205, 3). La tarifa es round(2.50 + libras × 1.20, 2).</p><pre><code>a = AdaptadorFedEx()
+costo = a.calcular_costo(1.0, &quot;1428&quot;)
+dias = a.estimar_dias(&quot;5000&quot;)</code></pre>
+<div class="inciso"><label for="q29-a">a) costo:</label>
+<input class="num" id="q29-a" data-answer="5.15" aria-describedby="q29-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q29-a-fb"></span></div>
+<div class="inciso"><label for="q29-b">b) dias:</label>
+<input class="num" id="q29-b" data-answer="3" aria-describedby="q29-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q29-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 29">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 29" aria-expanded="false" aria-controls="exp29">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp29" hidden><strong>Respuestas:</strong> a) 5.15 · b) 3<p><strong>Explicación.</strong> Un kilogramo se convierte en 2.205 libras y cuesta 5.15. El código 5000 no empieza con 1, por lo que demora 3 días.</p></div></section>
+<section class="q" id="q30"><header><span class="n">30</span><div><h2>Redondeo y normalización</h2><span class="tema">Adapter · Nivel 2</span></div></header><p>Se cotiza un paquete liviano y se estima una ciudad escrita con espacios y tilde.</p><pre><code>a = AdaptadorDHL()
+costo = a.calcular_costo(0.0019, &quot;Córdoba&quot;)
+dias = a.estimar_dias(&quot;  CÓRDOBA  &quot;)</code></pre>
+<div class="inciso"><label for="q30-a">a) costo:</label>
+<input class="num" id="q30-a" data-answer="3.02" aria-describedby="q30-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q30-a-fb"></span></div>
+<div class="inciso"><label for="q30-b">b) dias:</label>
+<input class="num" id="q30-b" data-answer="2" aria-describedby="q30-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q30-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 30">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 30" aria-expanded="false" aria-controls="exp30">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp30" hidden><strong>Respuestas:</strong> a) 3.02 · b) 2<p><strong>Explicación.</strong> 1.9 gramos se redondean a 2, no se truncan a 1. La comparación de ciudades normaliza espacios extremos, mayúsculas y tildes.</p></div></section>
+<section class="q" id="q31"><header><span class="n">31</span><div><h2>Desuscripción durante el aviso</h2><span class="tema">Observer · Nivel 2</span></div></header><p>Ana y Luis están suscritos en ese orden. Durante actualizar, Ana se desuscribe; ninguno lanza excepciones.</p><pre><code># Implementación actual de Tienda
+for cliente in list(self._clientes):
+    cliente.actualizar(mensaje)</code></pre>
+<div class="inciso"><label for="q31-a">a) ¿Luis recibe ese mismo aviso?</label>
+<select id="q31-a" data-answer="Sí" aria-describedby="q31-a-fb"><option value="">Elegir…</option>
+<option value="Sí">Sí</option>
+<option value="No">No</option>
+<option value="Solo si se suscribe otra vez">Solo si se suscribe otra vez</option>
+<option value="Solo si se usa un hilo">Solo si se usa un hilo</option>
+</select>
+<span class="feedback" id="q31-a-fb"></span></div>
+<div class="inciso"><label for="q31-b">b) Suscriptores restantes tras el aviso:</label>
+<input class="num" id="q31-b" data-answer="1" aria-describedby="q31-b-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q31-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 31">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 31" aria-expanded="false" aria-controls="exp31">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp31" hidden><strong>Respuestas:</strong> a) Sí · b) 1<p><strong>Explicación.</strong> Se recorre una copia de la lista. Quitar a Ana de la lista original no desplaza a Luis en la copia que se está recorriendo.</p></div></section>
+<section class="q" id="q32"><header><span class="n">32</span><div><h2>Mismo nombre, objetos distintos</h2><span class="tema">Observer · Nivel 2</span></div></header><p>Cliente no redefine la igualdad por nombre.</p><pre><code>t = Tienda(&quot;Cortez&quot;)
+t.suscribir(Cliente(&quot;Ana&quot;))
+t.suscribir(Cliente(&quot;Ana&quot;))
+t.desuscribir(Cliente(&quot;Ana&quot;))</code></pre>
+<div class="inciso"><label for="q32-a">a) Cantidad final de suscriptores:</label>
+<input class="num" id="q32-a" data-answer="2" aria-describedby="q32-a-fb" inputmode="decimal" autocomplete="off" placeholder="?">
+<span class="feedback" id="q32-a-fb"></span></div>
+<div class="inciso"><label for="q32-b">b) Resultado de desuscribir:</label>
+<select id="q32-b" data-answer="Informa que el cliente no está suscrito" aria-describedby="q32-b-fb"><option value="">Elegir…</option>
+<option value="Informa que el cliente no está suscrito">Informa que el cliente no está suscrito</option>
+<option value="Elimina ambos clientes llamados Ana">Elimina ambos clientes llamados Ana</option>
+<option value="Elimina al primero">Elimina al primero</option>
+<option value="Lanza ValueError">Lanza ValueError</option>
+</select>
+<span class="feedback" id="q32-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 32">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 32" aria-expanded="false" aria-controls="exp32">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp32" hidden><strong>Respuestas:</strong> a) 2 · b) Informa que el cliente no está suscrito<p><strong>Explicación.</strong> Los tres Cliente son objetos distintos. La prevención de duplicados no deduplica nombres; desuscribir un objeto ausente solo informa.</p></div></section>
+<section class="q" id="q33"><header><span class="n">33</span><div><h2>Un pago que falla</h2><span class="tema">Strategy · Nivel 2</span></div></header><p>El carrito tiene un producto válido. Se captura la excepción fuera de checkout.</p><pre><code>class PagoFallido(EstrategiaPago):
+    def pagar(self, monto):
+        raise RuntimeError(&quot;Servicio no disponible&quot;)
+
+c.set_estrategia_pago(PagoFallido())
+try:
+    c.checkout()
+except RuntimeError:
+    pass</code></pre>
+<div class="inciso"><label for="q33-a">a) Estado de los productos tras el error:</label>
+<select id="q33-a" data-answer="Se conservan para reintentar" aria-describedby="q33-a-fb"><option value="">Elegir…</option>
+<option value="Se conservan para reintentar">Se conservan para reintentar</option>
+<option value="Se eliminan">Se eliminan</option>
+<option value="Se duplican">Se duplican</option>
+<option value="Se convierten en decoradores">Se convierten en decoradores</option>
+</select>
+<span class="feedback" id="q33-a-fb"></span></div>
+<div class="inciso"><label for="q33-b">b) Estado de la estrategia:</label>
+<select id="q33-b" data-answer="Sigue siendo PagoFallido" aria-describedby="q33-b-fb"><option value="">Elegir…</option>
+<option value="Sigue siendo PagoFallido">Sigue siendo PagoFallido</option>
+<option value="None">None</option>
+<option value="PagoEfectivo automáticamente">PagoEfectivo automáticamente</option>
+<option value="PagoPayPal automáticamente">PagoPayPal automáticamente</option>
+</select>
+<span class="feedback" id="q33-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 33">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 33" aria-expanded="false" aria-controls="exp33">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp33" hidden><strong>Respuestas:</strong> a) Se conservan para reintentar · b) Sigue siendo PagoFallido<p><strong>Explicación.</strong> El reinicio ocurre después de pagar. Si pagar lanza una excepción, esa parte de checkout no se ejecuta.</p></div></section>
+<section class="q" id="q34"><header><span class="n">34</span><div><h2>Una clase con pagar no basta</h2><span class="tema">Strategy · Nivel 2</span></div></header><p>Se intenta inyectar un objeto que no hereda de la interfaz del TP.</p><pre><code>class PagoNuevo:
+    def pagar(self, monto):
+        print(monto)
+
+CarritoCompra().set_estrategia_pago(PagoNuevo())</code></pre>
+<div class="inciso"><label for="q34-a">a) Resultado actual:</label>
+<select id="q34-a" data-answer="TypeError" aria-describedby="q34-a-fb"><option value="">Elegir…</option>
+<option value="TypeError">TypeError</option>
+<option value="Se acepta por tener pagar">Se acepta por tener pagar</option>
+<option value="Se cobra cero">Se cobra cero</option>
+<option value="Se selecciona PagoEfectivo">Se selecciona PagoEfectivo</option>
+</select>
+<span class="feedback" id="q34-a-fb"></span></div>
+<div class="inciso"><label for="q34-b">b) Cambio mínimo para cumplir el contrato:</label>
+<select id="q34-b" data-answer="Heredar de EstrategiaPago e implementar pagar" aria-describedby="q34-b-fb"><option value="">Elegir…</option>
+<option value="Heredar de EstrategiaPago e implementar pagar">Heredar de EstrategiaPago e implementar pagar</option>
+<option value="Renombrar pagar a actualizar">Renombrar pagar a actualizar</option>
+<option value="Heredar de Producto">Heredar de Producto</option>
+<option value="Agregar un atributo precio">Agregar un atributo precio</option>
+</select>
+<span class="feedback" id="q34-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 34">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 34" aria-expanded="false" aria-controls="exp34">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp34" hidden><strong>Respuestas:</strong> a) TypeError · b) Heredar de EstrategiaPago e implementar pagar<p><strong>Explicación.</strong> El setter valida isinstance(estrategia, EstrategiaPago). La compatibilidad aquí es nominal y no solo duck typing.</p></div></section>
+<section class="q" id="q35"><header><span class="n">35</span><div><h2>El límite antifraude</h2><span class="tema">Chain of Responsibility · Nivel 2</span></div></header><p>El validador se usa solo, sin sucesor. Cada llamada es independiente.</p><pre><code>v = ValidadorFraude()
+a = v.validar({&quot;total&quot;: 5000.0})
+b = v.validar({&quot;total&quot;: 5000.01})</code></pre>
+<div class="inciso"><label for="q35-a">a) Valor de a:</label>
+<select id="q35-a" data-answer="True" aria-describedby="q35-a-fb"><option value="">Elegir…</option>
+<option value="True">True</option>
+<option value="False">False</option>
+<option value="None">None</option>
+<option value="ValueError">ValueError</option>
+</select>
+<span class="feedback" id="q35-a-fb"></span></div>
+<div class="inciso"><label for="q35-b">b) Valor de b:</label>
+<select id="q35-b" data-answer="False" aria-describedby="q35-b-fb"><option value="">Elegir…</option>
+<option value="False">False</option>
+<option value="True">True</option>
+<option value="None">None</option>
+<option value="ValueError">ValueError</option>
+</select>
+<span class="feedback" id="q35-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 35">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 35" aria-expanded="false" aria-controls="exp35">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp35" hidden><strong>Respuestas:</strong> a) True · b) False<p><strong>Explicación.</strong> Se rechazan totales mayores que 5000; el límite exacto está permitido. Al terminar una cadena válida se devuelve True.</p></div></section>
+<section class="q" id="q36"><header><span class="n">36</span><div><h2>Evitar un ciclo</h2><span class="tema">Chain of Responsibility · Nivel 2</span></div></header><p>Se intenta cerrar la cadena para que vuelva al principio.</p><pre><code>a = ValidadorStock()
+b = ValidadorPago()
+a.set_siguiente(b)
+b.set_siguiente(a)</code></pre>
+<div class="inciso"><label for="q36-a">a) Última llamada:</label>
+<select id="q36-a" data-answer="Lanza ValueError" aria-describedby="q36-a-fb"><option value="">Elegir…</option>
+<option value="Lanza ValueError">Lanza ValueError</option>
+<option value="Acepta el ciclo">Acepta el ciclo</option>
+<option value="Devuelve False">Devuelve False</option>
+<option value="Elimina a de la cadena">Elimina a de la cadena</option>
+</select>
+<span class="feedback" id="q36-a-fb"></span></div>
+<div class="inciso"><label for="q36-b">b) Motivo de la protección:</label>
+<select id="q36-b" data-answer="Evitar una delegación que pueda no terminar" aria-describedby="q36-b-fb"><option value="">Elegir…</option>
+<option value="Evitar una delegación que pueda no terminar">Evitar una delegación que pueda no terminar</option>
+<option value="Impedir más de dos validadores">Impedir más de dos validadores</option>
+<option value="Obligar a usar un Singleton">Obligar a usar un Singleton</option>
+<option value="Garantizar un pago real">Garantizar un pago real</option>
+</select>
+<span class="feedback" id="q36-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 36">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 36" aria-expanded="false" aria-controls="exp36">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp36" hidden><strong>Respuestas:</strong> a) Lanza ValueError · b) Evitar una delegación que pueda no terminar<p><strong>Explicación.</strong> set_siguiente recorre la cadena propuesta antes de asignar el enlace y rechaza si encuentra al propio manejador.</p></div></section>
+<section class="q" id="q37"><header><span class="n">37</span><div><h2>Identificar responsabilidades al extender</h2><span class="tema">Adapter · Nivel 2</span></div></header><p>Se incorpora un transportista legado nuevo que ofrece cotizar_onzas(peso, zona).</p><pre><code>class AdaptadorNuevo((1)):
+    def calcular_costo(self, peso_kg, destino):
+        # convierte kg a onzas y delega al legado
+        ...
+    def estimar_dias(self, destino): ...
+    def crear_envio(self, pedido_id, destino): ...</code></pre>
+<div class="inciso"><label for="q37-a">a) Base (1):</label>
+<select id="q37-a" data-answer="SistemaEnvio" aria-describedby="q37-a-fb"><option value="">Elegir…</option>
+<option value="SistemaEnvio">SistemaEnvio</option>
+<option value="SistemaLegadoDHL">SistemaLegadoDHL</option>
+<option value="DecoradorProducto">DecoradorProducto</option>
+<option value="CreadorProducto">CreadorProducto</option>
+</select>
+<span class="feedback" id="q37-a-fb"></span></div>
+<div class="inciso"><label for="q37-b">b) Lugar de la conversión kg → onzas:</label>
+<select id="q37-b" data-answer="Dentro del adaptador nuevo" aria-describedby="q37-b-fb"><option value="">Elegir…</option>
+<option value="Dentro del adaptador nuevo">Dentro del adaptador nuevo</option>
+<option value="En todos los clientes que cotizan">En todos los clientes que cotizan</option>
+<option value="En Producto.precio">En Producto.precio</option>
+<option value="En Tienda.suscribir">En Tienda.suscribir</option>
+</select>
+<span class="feedback" id="q37-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 37">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 37" aria-expanded="false" aria-controls="exp37">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp37" hidden><strong>Respuestas:</strong> a) SistemaEnvio · b) Dentro del adaptador nuevo<p><strong>Explicación.</strong> El adaptador implementa la interfaz esperada y encapsula la traducción. El cliente conserva la llamada uniforme calcular_costo.</p></div></section>
+<section class="q" id="q38"><header><span class="n">38</span><div><h2>El contrato de suscripción</h2><span class="tema">Observer · Nivel 2</span></div></header><p>Las llamadas se evalúan por separado con una tienda vacía.</p><pre><code># A
+t.suscribir(object())
+# B
+t.desuscribir(Cliente(&quot;Ausente&quot;))</code></pre>
+<div class="inciso"><label for="q38-a">a) Caso A:</label>
+<select id="q38-a" data-answer="TypeError" aria-describedby="q38-a-fb"><option value="">Elegir…</option>
+<option value="TypeError">TypeError</option>
+<option value="Se agrega el objeto">Se agrega el objeto</option>
+<option value="Retorna un Observer">Retorna un Observer</option>
+<option value="Notifica a todos">Notifica a todos</option>
+</select>
+<span class="feedback" id="q38-a-fb"></span></div>
+<div class="inciso"><label for="q38-b">b) Caso B:</label>
+<select id="q38-b" data-answer="Informa la ausencia sin lanzar ValueError" aria-describedby="q38-b-fb"><option value="">Elegir…</option>
+<option value="Informa la ausencia sin lanzar ValueError">Informa la ausencia sin lanzar ValueError</option>
+<option value="Lanza ValueError">Lanza ValueError</option>
+<option value="Suscribe al cliente">Suscribe al cliente</option>
+<option value="Borra la tienda">Borra la tienda</option>
+</select>
+<span class="feedback" id="q38-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 38">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 38" aria-expanded="false" aria-controls="exp38">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp38" hidden><strong>Respuestas:</strong> a) TypeError · b) Informa la ausencia sin lanzar ValueError<p><strong>Explicación.</strong> suscribir exige Observer. desuscribir comprueba pertenencia antes de remove, de modo que una baja inexistente no rompe la ejecución.</p></div></section>
+<section class="q" id="q39"><header><span class="n">39</span><div><h2>Integración entre patrones</h2><span class="tema">Strategy · Nivel 2</span></div></header><p>Se intenta usar directamente un componente decorado en CarritoCompra.</p><pre><code>p = EnvolturaRegalo(ProductoConcreto(&quot;Libro&quot;, 10.0))
+c = CarritoCompra()
+c.agregar_producto(p)</code></pre>
+<div class="inciso"><label for="q39-a">a) Resultado en el código actual:</label>
+<select id="q39-a" data-answer="TypeError antes de agregarlo" aria-describedby="q39-a-fb"><option value="">Elegir…</option>
+<option value="TypeError antes de agregarlo">TypeError antes de agregarlo</option>
+<option value="Se agrega y se paga automáticamente">Se agrega y se paga automáticamente</option>
+<option value="Se agrega con precio cero">Se agrega con precio cero</option>
+<option value="Se convierte automáticamente en Libro">Se convierte automáticamente en Libro</option>
+</select>
+<span class="feedback" id="q39-a-fb"></span></div>
+<div class="inciso"><label for="q39-b">b) Contrato completo requerido por el carrito:</label>
+<select id="q39-b" data-answer="nombre, precio y mostrar_info() invocable" aria-describedby="q39-b-fb"><option value="">Elegir…</option>
+<option value="nombre, precio y mostrar_info() invocable">nombre, precio y mostrar_info() invocable</option>
+<option value="Solo descripcion y precio">Solo descripcion y precio</option>
+<option value="Solo heredar de Observer">Solo heredar de Observer</option>
+<option value="Solo implementar build()">Solo implementar build()</option>
+</select>
+<span class="feedback" id="q39-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 39">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 39" aria-expanded="false" aria-controls="exp39">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp39" hidden><strong>Respuestas:</strong> a) TypeError antes de agregarlo · b) nombre, precio y mostrar_info() invocable<p><strong>Explicación.</strong> Decorator usa descripcion y precio, mientras que el carrito requiere nombre, precio y mostrar_info. Los patrones están separados; haría falta una adaptación explícita.</p></div></section>
+<section class="q" id="q40"><header><span class="n">40</span><div><h2>No confundir controles con integración</h2><span class="tema">Chain of Responsibility · Nivel 2</span></div></header><p>Analizá el código actual, sin suponer conexiones adicionales entre los patrones.</p><pre><code>v = ValidadorStock()
+r = v.validar({&quot;productos&quot;: [&quot;X&quot;]})
+# En otra parte del programa:
+c = CarritoCompra()</code></pre>
+<div class="inciso"><label for="q40-a">a) Qué verifica ese ValidadorStock:</label>
+<select id="q40-a" data-answer="Que productos sea una lista no vacía" aria-describedby="q40-a-fb"><option value="">Elegir…</option>
+<option value="Que productos sea una lista no vacía">Que productos sea una lista no vacía</option>
+<option value="Que haya unidades reales en una base de datos">Que haya unidades reales en una base de datos</option>
+<option value="Que el pago haya sido autorizado">Que el pago haya sido autorizado</option>
+<option value="Que X sea una instancia de Producto">Que X sea una instancia de Producto</option>
+</select>
+<span class="feedback" id="q40-a-fb"></span></div>
+<div class="inciso"><label for="q40-b">b) ¿checkout ejecuta automáticamente esta cadena?</label>
+<select id="q40-b" data-answer="No; habría que integrarla explícitamente" aria-describedby="q40-b-fb"><option value="">Elegir…</option>
+<option value="No; habría que integrarla explícitamente">No; habría que integrarla explícitamente</option>
+<option value="Sí, siempre">Sí, siempre</option>
+<option value="Solo cuando se paga con PayPal">Solo cuando se paga con PayPal</option>
+<option value="Solo con pedidos express">Solo con pedidos express</option>
+</select>
+<span class="feedback" id="q40-b-fb"></span></div>
+<div class="acc"><button class="corr primary" aria-label="Corregir pregunta 40">Corregir</button><button class="ver" aria-label="Ver respuestas de pregunta 40" aria-expanded="false" aria-controls="exp40">Ver respuestas</button><span class="score" role="status" aria-live="polite"></span></div>
+<div class="exp" id="exp40" hidden><strong>Respuestas:</strong> a) Que productos sea una lista no vacía · b) No; habría que integrarla explícitamente<p><strong>Explicación.</strong> Stock simula una regla sobre la estructura del pedido. CarritoCompra no invoca los validadores: main demuestra los patrones sin conectar automáticamente todos sus flujos.</p></div></section>
+<footer>Basado en el TP Python de ocho patrones GoF. Edición: 19/10/2026. Simulaciones locales: no hay pagos, inventario ni transportistas reales.</footer></main><script type="module">
+function esCorrecta(value, answer, numeric) {
+  const cleaned = value.trim().replace(',', '.');
+  if (!numeric) return value === answer;
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleaned)) return false;
+  const n = Number(cleaned);
+  return Number.isFinite(n) && Math.abs(n - Number(answer)) < 1e-9;
+}
+// INTERFAZ
+const preguntas = [...document.querySelectorAll('.q')];
+function totalizar() {
+  let puntos = 0, revisadas = 0;
+  for (const q of preguntas) {
+    if (q.dataset.score !== undefined) {
+      puntos += Number(q.dataset.score);
+      revisadas++;
+    }
+  }
+  document.querySelector('#global').textContent =
+    `${puntos} / 80 incisos correctos · ${revisadas} / 40 preguntas corregidas · Nota: ${(puntos / 8).toFixed(2)} / 10`;
+}
+function corregir(q) {
+  let puntos = 0;
+  for (const field of q.querySelectorAll('[data-answer]')) {
+    const bien = esCorrecta(field.value, field.dataset.answer, field.tagName === 'INPUT');
+    field.classList.toggle('ok', bien);
+    field.classList.toggle('bad', !bien);
+    field.setAttribute('aria-invalid', String(!bien));
+    field.parentElement.querySelector('.feedback').textContent =
+      bien ? 'Correcto.' : (field.value.trim() ? 'Incorrecto.' : 'Sin responder.');
+    if (bien) puntos++;
+  }
+  q.dataset.score = puntos;
+  q.querySelector('.score').textContent = `${puntos} / 2`;
+  totalizar();
+}
+function revelar(q) {
+  q.querySelector('.exp').hidden = false;
+  q.querySelector('.ver').setAttribute('aria-expanded', 'true');
+}
+for (const q of preguntas) {
+  for (const select of q.querySelectorAll('select')) {
+    const options = [...select.options].slice(1);
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
+    }
+    select.append(...options);
+    select.value = '';
+  }
+  q.querySelector('.corr').addEventListener('click', () => corregir(q));
+  q.querySelector('.ver').addEventListener('click', () => revelar(q));
+  q.addEventListener('input', () => {
+    delete q.dataset.score;
+    q.querySelector('.score').textContent = 'Respuesta modificada: volver a corregir.';
+    for (const field of q.querySelectorAll('[data-answer]')) {
+      field.classList.remove('ok', 'bad');
+      field.removeAttribute('aria-invalid');
+      field.parentElement.querySelector('.feedback').textContent = '';
+    }
+    totalizar();
+  });
+}
+document.querySelector('#corregir-todo').addEventListener('click', () => preguntas.forEach(corregir));
+totalizar();
+</script></body></html>
